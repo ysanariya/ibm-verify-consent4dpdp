@@ -1,0 +1,69 @@
+# =============================================================================
+# myITReturn Demo - Environment Configuration
+# =============================================================================
+# Copy this file to .env and fill in values from your IBM Verify tenant
+# DO NOT commit .env to version control (it contains secrets)
+# =============================================================================
+
+# OIDC Configuration
+# These values are used for user authentication via IBM Verify
+# Obtain these from: IBM Verify Admin Console > Applications > Your App > Sign On
+
+VERIFY_TENANT_URL=https://<tenant>.verify.ibm.com
+VERIFY_DISCOVERY_URL=https://<tenant>.verify.ibm.com/oauth2/.well-known/openid-configuration
+VERIFY_OIDC_CLIENT_ID=
+VERIFY_OIDC_CLIENT_SECRET=
+VERIFY_OIDC_REDIRECT_URI=http://localhost:3000/auth/callback
+VERIFY_OIDC_SCOPE=openid profile email
+
+# API Client Configuration
+# These credentials are used by the backend to call Verify APIs (Users API, Privacy API)
+# Obtain these from: IBM Verify Admin Console > Integration > API Clients > Your API Client
+
+VERIFY_API_CLIENT_ID=
+VERIFY_API_CLIENT_SECRET=
+
+# Privacy API Configuration
+# Base URL for Privacy/Consent APIs (usually same as tenant URL)
+
+VERIFY_PRIVACY_BASE_URL=https://<tenant>.verify.ibm.com
+
+# Application Configuration
+# APP_BASE_URL is used for consent notices and callback generation
+# SESSION_SECRET should be a random string (min 32 characters for production)
+
+APP_BASE_URL=http://localhost:3000
+SESSION_SECRET=your-random-session-secret-key-change-in-production
+
+# Server Configuration
+
+PORT=3000
+NODE_ENV=development
+
+# =============================================================================
+# Setup Instructions
+# =============================================================================
+#
+# 1. Create IBM Verify Custom Attributes:
+#    - mobile_number (String)
+#    - aadhar_id (String, masked)
+#    - pan_id (String)
+#
+# 2. Create IBM Verify Purposes:
+#    - MARKETING_COMMUNICATIONS (for name, email, mobile_number)
+#    - ITR_FILING (for name, email, mobile_number, aadhar_id, pan_id)
+#
+# 3. Create OIDC Application:
+#    - Grant Type: Authorization Code
+#    - Redirect URI: http://localhost:3000/auth/callback
+#    - Enable Privacy permissions
+#
+# 4. Create API Client:
+#    - Grant permissions for:
+#      * Check for data usage approval
+#      * Create privacy consent records
+#      * Read/Manage privacy consents
+#      * Retrieve privacy purposes
+#
+# See README.md for detailed setup steps
+# =============================================================================
