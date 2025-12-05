@@ -1,0 +1,59 @@
+<div style="max-width: 800px; margin: 0 auto;">
+    <!-- Warning Banner -->
+    <div class="alert alert-warning">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+            <div class="alert-title">Consent Required</div>
+            <div class="alert-message">
+                You must grant all required consents before filing your ITR. Please review and update your preferences below.
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Message -->
+    <div class="card" style="margin: var(--spacing-xl) 0;">
+        <div class="card-header">
+            <h2>Update Your Consent Preferences</h2>
+        </div>
+        <div class="card-body">
+            <p>
+                It looks like you haven't granted all the required consents for ITR filing. 
+                Please visit the consent management page to review and update your preferences.
+            </p>
+            {{#if missingConsentsLabels}}
+            <p style="color: var(--error);">
+                <strong>Missing consents:</strong>
+            </p>
+            <ul style="color: var(--error); margin-top: 0  ">
+                {{#each missingConsentsLabels}}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+            {{/if}}
+            <p style="color: var(--text-light);">
+                <strong>Required for ITR Filing:</strong>
+                Your full name, email, mobile number, Aadhaar number, and PAN number
+            </p>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+        <a href="/consent/management" class="btn btn-primary" style="padding: var(--spacing-md) var(--spacing-lg);">
+            📋 Go to Consent Manager
+        </a>
+        <a href="/dashboard" class="btn btn-secondary" style="padding: var(--spacing-md) var(--spacing-lg);">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+    <!-- Information -->
+    <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--light-gray); border-radius: var(--border-radius);">
+        <h4 style="margin-top: 0;">Why Are These Consents Required?</h4>
+        <ul style="color: var(--text-light); margin: 0;">
+            <li><strong>Name, Email, Mobile:</strong> To identify you and send filing updates</li>
+            <li><strong>Aadhaar:</strong> For identity verification as per tax regulations</li>
+            <li><strong>PAN:</strong> For tax identification and authority communications</li>
+        </ul>
+    </div>
+</div>

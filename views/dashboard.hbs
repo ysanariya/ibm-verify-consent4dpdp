@@ -1,0 +1,101 @@
+<div style="max-width: 900px; margin: 0 auto;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xl);">
+        <div>
+            <h1>Welcome Back, {{user.name}}!</h1>
+            <p style="margin: 0; color: var(--text-light);">Your ITR filing dashboard</p>
+        </div>
+        <a href="/logout" class="btn btn-logout">Log Out</a>
+    </div>
+
+    <!-- User Summary Card -->
+    <div class="card" style="margin-bottom: var(--spacing-xl);">
+        <div class="card-header">
+            <h3>Your Information</h3>
+        </div>
+        <div class="card-body">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg);">
+                <div>
+                    <strong style="display: block; margin-bottom: var(--spacing-sm);">Full Name</strong>
+                    <span style="color: var(--text-light);">{{user.name}}</span>
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: var(--spacing-sm);">Email</strong>
+                    <span style="color: var(--text-light);">{{user.email}}</span>
+                </div>
+                <div>
+                    <strong style="display: block; margin-bottom: var(--spacing-sm);">Subject</strong>
+                    <span style="color: var(--text-light);">{{user.sub}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a href="/users/profile" style="color: var(--primary-blue);">View Full Profile →</a>
+        </div>
+    </div>
+
+    <!-- Main Actions -->
+    <h2 style="margin-bottom: var(--spacing-lg);">Quick Actions</h2>
+
+    <div class="dashboard-grid">
+        <!-- File ITR Card -->
+        <form method="POST" action="/itr/assess" style="display: contents;">
+            <div class="action-card">
+                <h3 style="margin-top: 0;">📝 File Your ITR</h3>
+                <p>Start the process to file your Income Tax Return securely and quickly</p>
+                <button type="submit" class="btn" style="background-color: var(--white); color: var(--primary-blue); font-weight: 600; cursor: pointer;">
+                    File ITR Now
+                </button>
+            </div>
+        </form>
+
+        <!-- Manage Consent Card -->
+        <a href="/consent/management" style="text-decoration: none; display: contents;">
+            <div class="action-card" style="background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);">
+                <h3 style="margin-top: 0;">🔐 Manage Consent</h3>
+                <p>Review and update your privacy preferences and data sharing settings</p>
+                <div class="btn" style="background-color: var(--white); color: #4CAF50; font-weight: 600; cursor: pointer; display: inline-block;">
+                    Manage Preferences
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Information Boxes -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg); margin-top: var(--spacing-xl);">
+        <!-- Security Info -->
+        <div class="card">
+            <h4>🔒 Your Data is Secure</h4>
+            <p style="font-size: 13px;">
+                Your personal and financial information is protected with IBM Security Verify, 
+                an enterprise-grade identity and consent management platform.
+            </p>
+        </div>
+
+        <!-- DPDP Info -->
+        <div class="card">
+            <h4>✓ DPDP Compliant</h4>
+            <p style="font-size: 13px;">
+                We comply with the Digital Personal Data Protection Act, 2023. 
+                Your consent preferences are always under your control.
+            </p>
+        </div>
+
+        <!-- Privacy Info -->
+        <div class="card">
+            <h4>📋 Your Privacy Matters</h4>
+            <p style="font-size: 13px;">
+                You can manage your consent preferences at any time. 
+                We will never share your data without your explicit consent.
+            </p>
+        </div>
+    </div>
+
+    <!-- Help Section -->
+    <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--light-gray); border-radius: var(--border-radius); text-align: center;">
+        <h4>Need Help?</h4>
+        <p style="margin-bottom: var(--spacing-md);">
+            For support or questions about your ITR filing, contact our help desk or visit our FAQ page.
+        </p>
+        <a href="#" class="btn btn-secondary">Contact Support</a>
+    </div>
+</div>

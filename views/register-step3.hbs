@@ -1,0 +1,130 @@
+<div class="registration-container">
+    <!-- Step Indicator -->
+    <div class="step-indicator">
+        <div class="step completed">
+            <div class="step-number">✓</div>
+            <div class="step-label">Account</div>
+        </div>
+        <div class="step completed">
+            <div class="step-number">✓</div>
+            <div class="step-label">Tax ID</div>
+        </div>
+        <div class="step active">
+            <div class="step-number">3</div>
+            <div class="step-label">Confirm</div>
+        </div>
+    </div>
+
+    <!-- Error Message -->
+    {{#if error}}
+    <div class="alert alert-error">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+            <div class="alert-title">Error</div>
+            <div class="alert-message">{{error}}</div>
+        </div>
+    </div>
+    {{/if}}
+
+    <!-- Review Card -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Review Your Information</h2>
+            <p>Please verify your details before completing registration</p>
+        </div>
+
+        <div class="card-body">
+            <!-- Account Information -->
+            <div style="margin-bottom: var(--spacing-lg); padding: var(--spacing-md); background-color: var(--light-gray); border-radius: var(--border-radius);">
+                <h4 style="margin-top: 0;">Account Information</h4>
+                <div style="display: grid; gap: var(--spacing-sm);">
+                    <div><strong>Name:</strong> {{user.fullName}}</div>
+                    <div><strong>Email:</strong> {{user.email}}</div>
+                    <div><strong>Mobile:</strong> {{user.mobile}}</div>
+                </div>
+            </div>
+
+            <!-- Tax Identity Information -->
+            <div style="margin-bottom: var(--spacing-lg); padding: var(--spacing-md); background-color: var(--light-gray); border-radius: var(--border-radius);">
+                <h4 style="margin-top: 0;">Tax Identity Information</h4>
+                <div style="display: grid; gap: var(--spacing-sm);">
+                    <div><strong>Aadhaar:</strong> {{user.aadhaar}}</div>
+                    <div><strong>PAN:</strong> {{user.pan}}</div>
+                </div>
+            </div>
+
+            <!-- ITR Filing Consent Confirmation -->
+            <form method="POST" action="/register/step3" id="step3Form">
+                <div style="padding: var(--spacing-md); background-color: #FFF3E0; border-left: 4px solid var(--warning); border-radius: var(--border-radius); margin-bottom: var(--spacing-lg);">
+                    <h4 style="margin-top: 0; color: var(--warning);">ITR Filing Consent - REQUIRED</h4>
+                    <p>
+                        You have confirmed that you consent to the use of your personal information for ITR filing services. 
+                        This includes your name, email, mobile number, Aadhaar number, and PAN.
+                    </p>
+                    <p>
+                        <strong>Your explicit consent is required for:</strong>
+                    </p>
+                </div>
+
+                <div class="form-group" style="margin-bottom: var(--spacing-lg);">
+                    <label style="display: flex; align-items: flex-start; gap: var(--spacing-md); padding: var(--spacing-md); background-color: var(--light-gray); border-radius: var(--border-radius); cursor: pointer;">
+                        <input type="checkbox" name="aadhaarConsent" value="on" id="aadhaarConsent" style="flex-shrink: 0; margin-top: 4px;" required>
+                        <div>
+                            <strong style="color: var(--error);">I consent to use my Aadhaar number for ITR filing *</strong>
+                            <p style="font-size: 13px; margin: var(--spacing-sm) 0 0 0; color: var(--text-light);">
+                                Your Aadhaar will be used for identity verification and as per DPDP regulations. 
+                                You can withdraw this consent anytime from the consent management page.
+                            </p>
+                        </div>
+                    </label>
+                    <div class="form-error" id="aadhaarConsentError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label style="display: flex; align-items: flex-start; gap: var(--spacing-md); padding: var(--spacing-md); background-color: var(--light-gray); border-radius: var(--border-radius); cursor: pointer;">
+                        <input type="checkbox" name="panConsent" value="on" id="panConsent" style="flex-shrink: 0; margin-top: 4px;" required>
+                        <div>
+                            <strong style="color: var(--error);">I consent to use my PAN number for ITR filing *</strong>
+                            <p style="font-size: 13px; margin: var(--spacing-sm) 0 0 0; color: var(--text-light);">
+                                Your PAN will be used for tax identification and as per DPDP regulations. 
+                                You can withdraw this consent anytime from the consent management page.
+                            </p>
+                        </div>
+                    </label>
+                    <div class="form-error" id="panConsentError"></div>
+                </div>
+
+                <!-- DPDP Compliance Note -->
+                <div class="alert alert-info" style="margin-top: var(--spacing-lg);">
+                    <div class="alert-icon">📋</div>
+                    <div class="alert-content">
+                        <div class="alert-title">DPDP Compliance</div>
+                        <div class="alert-message">
+                            This application complies with the Digital Personal Data Protection (DPDP) Act, 2023. 
+                            Your consent preferences are managed securely through IBM Security Verify.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div style="display: flex; gap: var(--spacing-md); margin-top: var(--spacing-xl);">
+                    <a href="/register/step2" class="btn btn-secondary" style="flex: 1; text-align: center; padding: var(--spacing-md);">
+                        ← Back
+                    </a>
+                    <button type="submit" class="btn btn-success" style="flex: 1; padding: var(--spacing-md); background-color: var(--success);">
+                        Complete Registration ✓
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/js/registration-validation.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.RegistrationValidator) {
+            window.RegistrationValidator.validateStep3();
+        }
+    });
+</script>

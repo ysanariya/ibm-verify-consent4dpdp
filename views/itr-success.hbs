@@ -1,0 +1,89 @@
+<div style="max-width: 800px; margin: 0 auto; text-align: center;">
+    <!-- Success Icon -->
+    <div style="font-size: 80px; margin-bottom: var(--spacing-lg);">
+        ✓
+    </div>
+
+    <!-- Success Message -->
+    <h1 style="color: var(--success); margin-bottom: var(--spacing-md);">
+        Your ITR Has Been Filed Successfully!
+    </h1>
+
+    <p style="font-size: 16px; color: var(--text-light); margin-bottom: var(--spacing-lg);">
+        Congratulations! Your Income Tax Return has been submitted successfully.
+    </p>
+
+    <!-- Demo Notice -->
+    <div class="alert alert-info" style="margin-bottom: var(--spacing-xl);">
+        <div class="alert-icon">📌</div>
+        <div class="alert-content">
+            <div class="alert-title">Demo Application</div>
+            <div class="alert-message">
+                This is a demonstration. In production, this would submit your ITR to the tax authorities. 
+                Your data is encrypted and protected by IBM Security Verify.
+            </div>
+        </div>
+    </div>
+
+    <!-- Details Card -->
+    <div class="card" style="text-align: left; margin-bottom: var(--spacing-xl);">
+        <div class="card-header">
+            <h3>Filing Details</h3>
+        </div>
+        <div class="card-body">
+            <div style="display: grid; gap: var(--spacing-md);">
+                <div style="display: flex; justify-content: space-between; padding: var(--spacing-md); background-color: var(--light-gray); border-radius: var(--border-radius);">
+                    <span><strong>Filing Date</strong></span>
+                    <span>{{#formatDate}}.constructor.call(Date.now()){{/formatDate}} {{this.timestamp}}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: var(--spacing-md); background-color: var(--light-gray); border-radius: var(--border-radius);">
+                    <span><strong>Reference ID</strong></span>
+                    <span style="font-family: monospace; color: var(--primary-blue);">{{referenceId}}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: var(--spacing-md); background-color: var(--light-gray); border-radius: var(--border-radius);">
+                    <span><strong>Status</strong></span>
+                    <span style="color: var(--success); font-weight: 600;">✓ Submitted</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Next Steps -->
+    <div style="text-align: left; margin-bottom: var(--spacing-xl);">
+        <h3>What's Next?</h3>
+        <ul style="list-style: none; padding: 0;">
+            <li style="padding: var(--spacing-sm) 0; display: flex; gap: var(--spacing-md);">
+                <span style="color: var(--success); font-weight: bold; font-size: 18px;">✓</span>
+                <span>Confirmation email will be sent to your registered email address</span>
+            </li>
+            <li style="padding: var(--spacing-sm) 0; display: flex; gap: var(--spacing-md);">
+                <span style="color: var(--primary-blue); font-weight: bold; font-size: 18px;">→</span>
+                <span>Monitor your filing status in the dashboard</span>
+            </li>
+            <li style="padding: var(--spacing-sm) 0; display: flex; gap: var(--spacing-md);">
+                <span style="color: var(--primary-blue); font-weight: bold; font-size: 18px;">→</span>
+                <span>Receive tax authority communications on your registered contact details</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Action Buttons -->
+    <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+        <a href="/dashboard" class="btn btn-primary" style="padding: var(--spacing-md) var(--spacing-lg);">
+            ← Back to Dashboard
+        </a>
+        <a href="/dashboard" class="btn btn-secondary" style="padding: var(--spacing-md) var(--spacing-lg);">
+            File Another ITR
+        </a>
+    </div>
+
+    <!-- Consent Manager Link -->
+    <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--light-gray); border-radius: var(--border-radius);">
+        <p style="margin: 0 0 var(--spacing-md) 0;">
+            Want to manage your consent preferences?
+        </p>
+        <a href="/consent/management" class="btn btn-secondary">
+            Update Your Consent Preferences
+        </a>
+    </div>
+</div>

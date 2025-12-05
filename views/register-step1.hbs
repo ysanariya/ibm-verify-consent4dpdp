@@ -1,0 +1,200 @@
+<div class="registration-container">
+    <!-- Step Indicator -->
+    <div class="step-indicator">
+        <div class="step active">
+            <div class="step-number">1</div>
+            <div class="step-label">Account</div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-label">Tax ID</div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-label">Confirm</div>
+        </div>
+    </div>
+
+    <!-- Error Message -->
+    {{#if error}}
+    <div class="alert alert-error">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+            <div class="alert-title">Error</div>
+            <div class="alert-message">{{error}}</div>
+        </div>
+    </div>
+    {{/if}}
+
+    <!-- Registration Form -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Create Your Account</h2>
+            <p>Sign up to file your income tax return securely</p>
+        </div>
+
+        <div class="card-body">
+            <form method="POST" action="/register/step1" id="registrationForm">
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        name="fullName" 
+                        value="{{formData.fullName}}"
+                        placeholder="John Doe"
+                        required
+                    >
+                    <div class="form-error" id="fullNameError"></div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        value="{{formData.email}}"
+                        placeholder="john@example.com"
+                        required
+                    >
+                    <div class="form-error" id="emailError"></div>
+                </div>
+
+                <!-- Mobile -->
+                <div class="form-group">
+                    <label for="mobile">Mobile Number *</label>
+                    <input 
+                        type="tel" 
+                        id="mobile" 
+                        name="mobile" 
+                        value="{{formData.mobile}}"
+                        placeholder="9876543210"
+                        maxlength="10"
+                        required
+                    >
+                    <div class="form-error" id="mobileError"></div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">Password *</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password"
+                        placeholder="At least 8 characters"
+                        required
+                    >
+                    <div class="form-error" id="passwordError"></div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password *</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        name="confirmPassword"
+                        placeholder="Re-enter your password"
+                        required
+                    >
+                    <div class="form-error" id="confirmPasswordError"></div>
+                </div>
+
+                <!-- DPDP Consent Section 1: Marketing Communications -->
+                <div class="consent-section" style="margin-top: var(--spacing-xl);">
+                    <h3>Marketing Communications</h3>
+                    
+                    <div class="consent-notice">
+                        <strong>Privacy Notice:</strong>
+                        We may use your personal information to send you marketing communications about our services, 
+                        features, and special offers. We will only do this with your explicit consent as required by DPDP 
+                        regulations. You can withdraw this consent at any time.
+                    </div>
+
+                    <div class="form-group">
+                        <div style="margin-bottom: var(--spacing-md);">
+                            <label style="display: flex; align-items: center; gap: var(--spacing-md);">
+                                <input type="checkbox" name="marketing-name" value="on"> 
+                                <span>Use my full name for personalized communications</span>
+                            </label>
+                        </div>
+
+                        <label style="display: flex; align-items: center; gap: var(--spacing-md);">
+                            <input type="checkbox" name="marketing-email" value="on"> 
+                            <span>Send marketing emails to {{formData.email}}</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: var(--spacing-md);">
+                            <input type="checkbox" name="marketing-mobile" value="on"> 
+                            <span>Send SMS notifications to {{formData.mobile}}</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- DPDP Consent Section 2: ITR Filing -->
+                <div class="consent-section">
+                    <h3>ITR Filing Services</h3>
+                    
+                    <div class="consent-notice">
+                        <strong>Privacy Notice:</strong>
+                        We will use your personal information to provide ITR filing services. This includes your name, 
+                        email, and mobile number for verification and communication purposes. Your consent is required 
+                        and complies with DPDP regulations. This information will be encrypted and protected.
+                    </div>
+
+                    <div class="form-group">
+                        <div style="margin-bottom: var(--spacing-md);">
+                            <label style="display: flex; align-items: center; gap: var(--spacing-md);">
+                                <input type="checkbox" name="itr-name" value="on" checked disabled> 
+                                <span><strong>Full Name (Required)</strong></span>
+                            </label>
+                        </div>
+
+                        <label style="display: flex; align-items: center; gap: var(--spacing-md);">
+                            <input type="checkbox" name="itr-email" value="on" checked disabled> 
+                            <span><strong>Email Address (Required)</strong></span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: var(--spacing-md);">
+                            <input type="checkbox" name="itr-mobile" value="on" checked disabled> 
+                            <span><strong>Mobile Number (Required)</strong></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Next Button -->
+                <div style="margin-top: var(--spacing-xl);">
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: var(--spacing-md);">
+                        Next: Tax Identity Information
+                    </button>
+                </div>
+
+                <!-- Already have account? -->
+                <div style="text-align: center; margin-top: var(--spacing-lg);">
+                    <p>
+                        Already have an account? 
+                        <a href="/login">Log in here</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/js/registration-validation.js"></script>
+<script>
+    // Initialize form validation on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.RegistrationValidator) {
+            window.RegistrationValidator.validateStep1();
+        }
+    });
+</script>

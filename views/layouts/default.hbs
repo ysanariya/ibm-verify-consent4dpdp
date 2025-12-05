@@ -1,0 +1,83 @@
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="icon" href="/img/favicon.ico">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="description" content="myITReturn Demo - DPDP-Compliant ITR Filing with IBM Verify">
+	<title>{{title}}</title>
+	
+	<!-- Modern CSS for clean, responsive design -->
+	<link rel='stylesheet' href='/styles/main.css' />
+	<!-- No overrides.css: using default main.css only -->
+</head>
+
+<body>
+	<div id="root">
+		<!-- Navigation Bar -->
+		<nav class="navbar">
+			<div class="navbar-container">
+				<!-- Logo / Brand -->
+				<div class="navbar-logo">
+					<a href="/">
+						<span class="logo-text">myITReturn</span>
+						<span class="logo-subtitle">Demo</span>
+					</a>
+				</div>
+
+				<!-- Nav Links (centered) -->
+				<div class="nav-links">
+					<a href="#" class="nav-link">Import CG/Shares</a>
+					<a href="#" class="nav-link">Pricing</a>
+					<a href="#" class="nav-link">Support</a>
+				</div>
+
+				<!-- Auth Buttons (right side) -->
+				<div class="auth-buttons">
+					{{#if user}}
+						<!-- Logged in - show user name and logout -->
+						<span class="user-greeting">{{user.name}}</span>
+						<a href="/logout" class="btn btn-logout">Log Out</a>
+					{{else}}
+						<!-- Not logged in - show login and signup -->
+						<a href="/login" class="btn btn-secondary">Log In</a>
+						<a href="/register" class="btn btn-primary">Sign Up</a>
+					{{/if}}
+				</div>
+			</div>
+		</nav>
+
+		<!-- Main Content -->
+		<main class="main-content">
+			<div class="container">
+				{{{body}}}
+			</div>
+		</main>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="container">
+				<div class="footer-content">
+					<p class="footer-text">
+						This is a demo application showcasing DPDP-compliant consent management using IBM Security Verify.
+					</p>
+					<p class="footer-text small">
+						<strong>Data Protection Officer:</strong> <a href="mailto:dpo@example.com">dpo@example.com</a>
+						| <a href="#">Privacy Policy</a>
+						| <a href="#">DPDP Compliance</a>
+					</p>
+					<p class="footer-text small">
+						Powered by <strong>IBM Security Verify</strong> | 
+						<a href="https://github.com/vivshankar/dune-privacy-demo" target="_blank">View on GitHub</a>
+					</p>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<script src='/js/consent-toggles.js'></script>
+	<script src='/js/registration-validation.js'></script>
+</body>
+
+</html>

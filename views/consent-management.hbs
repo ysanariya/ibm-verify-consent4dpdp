@@ -1,0 +1,131 @@
+<div style="max-width: 1000px; margin: 0 auto;">
+    <div style="margin-bottom: var(--spacing-xl);">
+        <h1>Manage Your Consent Preferences</h1>
+        <p style="color: var(--text-light);">
+            Review and update how your personal data is used by myITReturn
+        </p>
+    </div>
+
+    {{#if apiError}}
+    <div class="alert alert-error" style="margin-bottom: var(--spacing-lg);">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+            <div class="alert-title">API Error</div>
+            <div class="alert-message">{{apiError}}</div>
+        </div>
+    </div>
+    {{/if}}
+
+    <!-- Two-Column Consent Layout -->
+    <div class="consent-grid" id="consentContainer">
+        <!-- Left Column: Marketing Communications -->
+        <div>
+            <div class="consent-section">
+                <h3>{{marketingMeta.name}}</h3>
+                
+                <div class="consent-notice">
+                    {{marketingMeta.notice}}
+                </div>
+
+                <div id="marketing-consents">
+                    {{#each marketingMeta.attributes}}
+                    <div class="consent-item">
+                        <div class="toggle-wrapper">
+                            <label class="toggle-label">
+                                <strong>{{this.label}}</strong>
+                                <div style="font-size: 12px; color: var(--text-light); margin-top: var(--spacing-xs);">
+                                    {{this.description}}
+                                </div>
+                            </label>
+                            <label class="toggle-switch">
+                                <input 
+                                    type="checkbox" 
+                                    class="consent-toggle" 
+                                    data-purpose="MARKETING_COMMUNICATIONS"
+                                    data-attribute="{{this.id}}"
+                                    {{#if ../consentState.MARKETING_COMMUNICATIONS.[this.id]}}checked{{/if}}
+                                >
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: ITR Filing -->
+        <div>
+            <div class="consent-section">
+                <h3>{{itrMeta.name}}</h3>
+                
+                <div class="consent-notice">
+                    {{itrMeta.notice}}
+                </div>
+
+                <div id="itr-consents">
+                    {{#each itrMeta.attributes}}
+                    <div class="consent-item">
+                        <div class="toggle-wrapper">
+                            <label class="toggle-label">
+                                <strong>{{this.label}}</strong>
+                                <div style="font-size: 12px; color: var(--text-light); margin-top: var(--spacing-xs);">
+                                    {{this.description}}
+                                </div>
+                            </label>
+                            <label class="toggle-switch">
+                                <input 
+                                    type="checkbox" 
+                                    class="consent-toggle" 
+                                    data-purpose="ITR_FILING"
+                                    data-attribute="{{this.id}}"
+                                    {{#if ../consentState.ITR_FILING.[this.id]}}checked{{/if}}
+                                >
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DPDP Compliance Information -->
+    <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--light-gray); border-radius: var(--border-radius);">
+        <h3>Data Protection & Privacy</h3>
+        <p>
+            We comply with the <strong>Digital Personal Data Protection (DPDP) Act, 2023</strong>. 
+            Your consent preferences are:
+        </p>
+        <ul style="color: var(--text-light);">
+            <li><strong>Secure:</strong> Encrypted and stored in IBM Security Verify</li>
+            <li><strong>Transparent:</strong> You can see exactly what data we use and for what purposes</li>
+            <li><strong>Revocable:</strong> You can change your mind at any time</li>
+            <li><strong>Audited:</strong> All consent changes are logged for transparency</li>
+        </ul>
+    </div>
+
+    <!-- Footer Actions -->
+    <div style="display: flex; gap: var(--spacing-md); justify-content: space-between; margin-top: var(--spacing-xl); flex-wrap: wrap;">
+        <div>
+            <p style="color: var(--text-light); margin: 0;">
+                <strong>Data Protection Officer:</strong> <a href="mailto:dpo@example.com">dpo@example.com</a>
+            </p>
+        </div>
+        <a href="/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast" style="display: none;"></div>
+
+<script src="/js/consent-toggles.js"></script>
+<script>
+    // Initialize consent toggles on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.ConsentManager) {
+            window.ConsentManager.init();
+        }
+    });
+</script>
