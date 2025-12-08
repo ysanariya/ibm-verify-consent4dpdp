@@ -25,7 +25,7 @@ This application demonstrates how to build a modern, privacy-first web applicati
 ## Architecture
 
 ```
-┌─────────────┐         ┌──────────────────┐         ┌──────────────┐
+┌─────────────┐        ┌──────────────────┐        ┌──────────────┐
 │   Browser   │◄──────►│   Node.js App    │◄──────►│ IBM Verify   │
 │  (User UI)  │        │  (Express.js)    │        │  (OIDC + API)│
 └─────────────┘        └──────────────────┘        └──────────────┘
